@@ -6,7 +6,13 @@ import uploadRoute from "./upload/route";
 import eventsRoute from "./events/route";
 import followingsRoute from "./followings/route";
 import membersRoute from "./members/route";
+import featuredsRoute from "./featureds/route";
+
 export const V1 = [
+  {
+    url: "featureds",
+    route: featuredsRoute,
+  },
   {
     url: "users",
     route: usersRoute,

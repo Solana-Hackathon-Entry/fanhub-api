@@ -6,6 +6,13 @@ export interface ICommunityModel {
   followers: string | IUserModel[];
   deleted?: Boolean;
 }
+export interface IFeaturedModel {
+  image: string;
+  route?: string;
+  start: Date;
+  end: Date;
+  deleted?: Boolean;
+}
 
 export interface IFollowingModel {
   user: string | IUserModel;
