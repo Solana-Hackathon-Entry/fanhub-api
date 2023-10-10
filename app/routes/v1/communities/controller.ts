@@ -15,6 +15,19 @@ const getAll = async (_req: Request, _res: Response) => {
   });
 };
 
+const getById = async (_req: Request, _res: Response) => {
+  const { id } = _req.params;
+  const data = await service.getById(id);
+  _res.send({
+    data: [data],
+    status: "success",
+    message: "Get community success",
+    meta: {
+      access: generateAccess({}),
+    },
+  });
+};
+
 const add = async (_req: Request, _res: Response) => {
   const session: ClientSession = await startSession();
   _res.send(
@@ -57,4 +70,4 @@ const removeOne = async (_req: Request, _res: Response) => {
   );
 };
 
-export { getAll, add, update, removeOne };
+export { getAll, getById, add, update, removeOne };

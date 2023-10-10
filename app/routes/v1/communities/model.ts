@@ -15,13 +15,9 @@ const schema = new Schema<MODEL.ICommunityModel>(
     },
     description: {
       type: String,
-      required: true,
+      default: "",
     },
-    tags: {
-      type: [String],
-      default: [],
-    },
-    address: {
+    image: {
       type: String,
       required: true,
     },

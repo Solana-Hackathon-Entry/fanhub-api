@@ -1,30 +1,13 @@
-import V1 from "./v1";
+import { V1 } from "./v1";
 import { Express } from "express";
 
-export const routes = [
-  {
-    url: "/api/v1/users",
-    route: V1.usersRoute,
-  },
-  {
-    url: "/api/v1/auth",
-    route: V1.authRoute,
-  },
-  {
-    url: "/api/v1/communities",
-    route: V1.communitiesRoute,
-  },
-  {
-    url: "/api/v1/nfts",
-    route: V1.nftsRoute,
-  },
-  {
-    url: "/api/v1/upload",
-    route: V1.uploadRoute,
-  },
-];
+export const V1_ROUTE = V1.map((e: any) => {
+  e.url = "v1/" + e.url;
+  return e;
+});
+
 export const addRoutes = (app: Express) => {
-  routes.forEach((route) => {
-    app.use(route.url, route.route);
+  V1_ROUTE.forEach((route) => {
+    app.use("/api/" + route.url, route.route);
   });
 };

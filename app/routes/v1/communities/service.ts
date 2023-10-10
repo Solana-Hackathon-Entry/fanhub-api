@@ -5,6 +5,10 @@ async function getAll() {
   return await model.find({ deleted: false });
 }
 
+async function getById(_id: string) {
+  return await model.findOne({ _id, deleted: false });
+}
+
 async function add(_body: any, session: ClientSession) {
   return await model.create([_body], { session });
 }
@@ -21,4 +25,4 @@ async function removeOne(filter: any, session: ClientSession) {
   );
 }
 
-export default { getAll, add, update, removeOne };
+export default { getAll, getById, add, update, removeOne };
