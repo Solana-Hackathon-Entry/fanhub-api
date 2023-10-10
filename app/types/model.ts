@@ -2,6 +2,7 @@ export interface ICommunityModel {
   name: string;
   description: string;
   image: string;
+  users: string | IUserModel[];
   deleted?: Boolean;
 }
 

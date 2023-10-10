@@ -1,5 +1,6 @@
 import service from "./service.js";
 import users from "../users/service.js";
+import communities from "../communities/service.js";
 import { transaction, generateAccess } from "../../../utils/index.js";
 import { startSession, ClientSession } from "mongoose";
 import { Request, Response } from "express";
@@ -39,6 +40,12 @@ const add = async (_req: Request, _res: Response) => {
         await users.update(
           user,
           { $addToSet: { communities: community } },
+          session
+        );
+
+        await communities.update(
+          community,
+          { $addToSet: { users: user } },
           session
         );
         return await service.add(_req.body, session);

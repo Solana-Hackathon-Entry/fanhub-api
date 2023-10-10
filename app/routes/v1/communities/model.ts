@@ -21,6 +21,15 @@ const schema = new Schema<MODEL.ICommunityModel>(
       type: String,
       required: true,
     },
+    users: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: RESOURCE.USERS.DEFAULT,
+        },
+      ],
+      default: [],
+    },
     deleted: {
       type: Boolean,
       default: false,
