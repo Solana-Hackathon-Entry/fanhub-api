@@ -5,6 +5,15 @@ export interface ICommunityModel {
   deleted?: Boolean;
 }
 
+export interface IEventModel {
+  name: string;
+  description: string;
+  image: string;
+  date: Date;
+  location: string;
+  deleted?: Boolean;
+}
+
 export interface INftModel {
   name: string;
   description: string;
