@@ -5,7 +5,7 @@ import nftsRoute from "./nfts/route";
 import uploadRoute from "./upload/route";
 import eventsRoute from "./events/route";
 import followingsRoute from "./followings/route";
-
+import membersRoute from "./members/route";
 export const V1 = [
   {
     url: "users",
@@ -34,5 +34,9 @@ export const V1 = [
   {
     url: "followings",
     route: followingsRoute,
+  },
+  {
+    url: "members",
+    route: membersRoute,
   },
 ];

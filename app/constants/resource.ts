@@ -3,6 +3,7 @@ export default {
   COMMUNITIES: "Communities",
   EVENTS: "Events",
   FOLLOWINGS: "Followings",
+  MEMBERS: "Members",
   NFTS: "Nfts",
   USERS: {
     DEFAULT: "Users",
