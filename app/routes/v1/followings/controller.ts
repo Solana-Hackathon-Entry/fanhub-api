@@ -38,14 +38,14 @@ const add = async (_req: Request, _res: Response) => {
       session,
       async () => {
         await users.update(
-          user,
+          { _id: user },
           { $addToSet: { communities: community } },
           session
         );
 
         await communities.update(
-          community,
-          { $addToSet: { users: user } },
+          { _id: community },
+          { $addToSet: { followers: user } },
           session
         );
         return await service.add(_req.body, session);
@@ -58,17 +58,12 @@ const add = async (_req: Request, _res: Response) => {
 const update = async (_req: Request, _res: Response) => {
   const session: ClientSession = await startSession();
   const { id } = _req.params;
-  const { date, ...res } = _req.body;
 
   _res.send(
     await transaction(
       session,
       async () => {
-        return await service.update(
-          { _id: id },
-          { date: new Date(date), ...res },
-          session
-        );
+        return await service.update({ _id: id }, _req.body, session);
       },
       "Update following"
     )

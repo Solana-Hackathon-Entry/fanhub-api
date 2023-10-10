@@ -2,7 +2,8 @@ export interface ICommunityModel {
   name: string;
   description: string;
   image: string;
-  users: string | IUserModel[];
+  members: string | IUserModel[];
+  followers: string | IUserModel[];
   deleted?: Boolean;
 }
 
@@ -39,6 +40,7 @@ export interface IUserModel {
   firstName: string;
   lastName: string;
   communities: string | ICommunityModel[];
+  communityMember: string | ICommunityModel[];
   __t?: string;
   deleted?: Boolean;
 }

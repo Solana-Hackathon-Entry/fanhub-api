@@ -21,7 +21,16 @@ const schema = new Schema<MODEL.ICommunityModel>(
       type: String,
       required: true,
     },
-    users: {
+    members: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: RESOURCE.USERS.DEFAULT,
+        },
+      ],
+      default: [],
+    },
+    followers: {
       type: [
         {
           type: Schema.Types.ObjectId,
