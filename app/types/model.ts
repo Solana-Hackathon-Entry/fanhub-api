@@ -1,8 +1,7 @@
 export interface ICommunityModel {
   name: string;
   description: string;
-  tags: string[];
-  address: string;
+  image: string;
   deleted?: Boolean;
 }
 
