@@ -1,4 +1,5 @@
 import service from "./service.js";
+import users from "../users/service.js";
 import { transaction, generateAccess } from "../../../utils/index.js";
 import { startSession, ClientSession } from "mongoose";
 import { Request, Response } from "express";
@@ -30,10 +31,16 @@ const getById = async (_req: Request, _res: Response) => {
 
 const add = async (_req: Request, _res: Response) => {
   const session: ClientSession = await startSession();
+  const { user, community } = _req.body;
   _res.send(
     await transaction(
       session,
       async () => {
+        await users.update(
+          user,
+          { $addToSet: { communities: community } },
+          session
+        );
         return await service.add(_req.body, session);
       },
       "Create following"

@@ -17,6 +17,15 @@ const schema = new Schema<MODEL.IUserModel>(
       type: String,
       required: true,
     },
+    communities: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: RESOURCE.COMMUNITIES,
+        },
+      ],
+      default: [],
+    },
     deleted: {
       type: Boolean,
       default: false,

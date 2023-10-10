@@ -31,10 +31,10 @@ export interface INftModel {
 export interface IUserModel {
   firstName: string;
   lastName: string;
+  communities: string | ICommunityModel[];
   __t?: string;
   deleted?: Boolean;
 }
-
 export interface INftModel {
   address: string;
   deleted?: Boolean;
