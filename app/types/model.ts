@@ -5,6 +5,12 @@ export interface ICommunityModel {
   deleted?: Boolean;
 }
 
+export interface IFollowingModel {
+  user: string | IUserModel;
+  community: string | ICommunityModel;
+  deleted?: Boolean;
+}
+
 export interface IEventModel {
   name: string;
   description: string;

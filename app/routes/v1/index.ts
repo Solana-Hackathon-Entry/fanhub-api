@@ -4,6 +4,7 @@ import communitiesRoute from "./communities/route";
 import nftsRoute from "./nfts/route";
 import uploadRoute from "./upload/route";
 import eventsRoute from "./events/route";
+import followingsRoute from "./followings/route";
 
 export const V1 = [
   {
@@ -30,12 +31,8 @@ export const V1 = [
     url: "events",
     route: eventsRoute,
   },
+  {
+    url: "followings",
+    route: followingsRoute,
+  },
 ];
-
-export default {
-  uploadRoute,
-  nftsRoute,
-  communitiesRoute,
-  authRoute,
-  usersRoute,
-};
