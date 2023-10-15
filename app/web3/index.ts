@@ -17,7 +17,7 @@ async function uploadFile(uri: string) {
 }
 
 async function uploadMetadata(metadata: any, imageUri: string) {
-  metadata.image = await uploadFile(imageUri);
+  metadata.image = imageUri;
   const temp = await METAPLEX_INSTANCE.nfts().uploadMetadata(metadata);
   console.log(temp);
   return temp.uri;
