@@ -7,7 +7,7 @@ import eventsRoute from "./events/route";
 import followingsRoute from "./followings/route";
 import membersRoute from "./members/route";
 import featuredsRoute from "./featureds/route";
-
+import metaplexRoute from "./metaplex/route";
 export const V1 = [
   {
     url: "featureds",
@@ -44,5 +44,9 @@ export const V1 = [
   {
     url: "members",
     route: membersRoute,
+  },
+  {
+    url: "metaplex",
+    route: metaplexRoute,
   },
 ];

@@ -1,5 +1,8 @@
 import nftsRoute from "./nfts/route";
 
-export default {
-  nftsRoute,
-};
+export const V2 = [
+  {
+    url: "nfts",
+    route: nftsRoute,
+  },
+];

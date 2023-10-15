@@ -9,28 +9,29 @@ const METAPLEX_INSTANCE = getMetaplexInstance(
   getKeypairIdentity(ACCOUNT)
 );
 
-export async function uploadFile(uri: string) {
+async function uploadFile(uri: string) {
   const buffer = await urlToBuffer(uri);
   const file = toMetaplexFile(buffer, "image.jpg");
-  return await METAPLEX_INSTANCE.storage().upload(file);
+  const temp = await METAPLEX_INSTANCE.storage().upload(file);
+  return temp;
 }
 
-export async function uploadNFT(metadata: any, imageUri: string) {
+async function uploadMetadata(metadata: any, imageUri: string) {
   metadata.image = await uploadFile(imageUri);
-  const { uri } = await METAPLEX_INSTANCE.nfts().uploadMetadata(metadata);
-  return uri;
+  const temp = await METAPLEX_INSTANCE.nfts().uploadMetadata(metadata);
+  console.log(temp);
+  return temp.uri;
 }
 
-async function createNFT(metadata: string, imageUri: string) {
-  const {
-    nft: { address },
-  } = await METAPLEX_INSTANCE.nfts().create({
-    uri: await uploadNFT(metadata, imageUri),
-    name: "Fake Santa",
+async function createNFT(uri: string, name: string) {
+  const temp = await METAPLEX_INSTANCE.nfts().create({
+    uri,
+    name,
     sellerFeeBasisPoints: 0,
   });
+  console.log(temp);
 
-  return address.toString();
+  return temp.nft.address.toString();
 }
 
 // Get all from custodial wallet
@@ -43,10 +44,12 @@ async function getAllNFTS() {
 }
 
 export {
+  uploadFile,
   getAllNFTS,
   createNFT,
   METAPLEX_INSTANCE,
   getKeypairIdentity,
   ACCOUNT,
+  uploadMetadata,
   CONNECTION,
 };
