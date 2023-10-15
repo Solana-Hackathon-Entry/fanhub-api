@@ -36,10 +36,7 @@ export interface IEventModel {
 }
 
 export interface INftModel {
-  name: string;
-  description: string;
-  image: string;
-  symbol: string;
+  mint: string;
   deleted?: Boolean;
 }
 

@@ -1,7 +1,7 @@
 import { getMetaplexInstance, getKeypairIdentity } from "./metaplex";
 import { ACCOUNT } from "./account";
 import { CONNECTION } from "./connection";
-import { toMetaplexFile } from "@metaplex-foundation/js";
+import { PublicKey, toMetaplexFile } from "@metaplex-foundation/js";
 import { urlToBuffer } from "../utils";
 
 const METAPLEX_INSTANCE = getMetaplexInstance(
@@ -34,6 +34,19 @@ async function createNFT(uri: string, name: string) {
   return temp.nft.address.toString();
 }
 
+async function findAllByCreator() {
+  const temp = await METAPLEX_INSTANCE.nfts().findAllByCreator({
+    creator: METAPLEX_INSTANCE.identity().publicKey,
+  });
+  return temp;
+}
+
+async function findAllByMintList(mints: string[]) {
+  const temp = await METAPLEX_INSTANCE.nfts().findAllByMintList({
+    mints: mints.map((e: string) => new PublicKey(e)),
+  });
+  return temp;
+}
 // Get all from custodial wallet
 async function getAllNFTS() {
   const temp = await METAPLEX_INSTANCE.nfts().findAllByOwner({
@@ -44,6 +57,8 @@ async function getAllNFTS() {
 }
 
 export {
+  findAllByMintList,
+  findAllByCreator,
   uploadFile,
   getAllNFTS,
   createNFT,

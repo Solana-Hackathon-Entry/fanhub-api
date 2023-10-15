@@ -2,11 +2,13 @@ import service from "./service.js";
 import { transaction, generateAccess } from "../../../utils/index.js";
 import { startSession, ClientSession } from "mongoose";
 import { Request, Response } from "express";
+import { findAllByMintList } from "../../../web3";
 
 const getAll = async (_req: Request, _res: Response) => {
   const data = await service.getAll();
+  const mints = await findAllByMintList(data.map((e: any) => e.mint));
   _res.send({
-    data,
+    data: mints,
     status: "success",
     message: "Get nft success",
     meta: {

@@ -8,19 +8,7 @@ const option = {
 
 const schema = new Schema<MODEL.INftModel>(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      default: "",
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-    symbol: {
+    mint: {
       type: String,
       required: true,
     },
